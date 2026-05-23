@@ -82,5 +82,6 @@ class LoginController extends Controller
         Toastr::success('Logout successfully','Success');
         return redirect('login');
     }
+    
 
 }
