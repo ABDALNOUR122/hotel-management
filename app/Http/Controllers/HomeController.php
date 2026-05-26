@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Customer;
-
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 class HomeController extends Controller
 {
     /**
@@ -27,15 +28,10 @@ class HomeController extends Controller
     public function index()
     {
         $allBookings = Booking::all();
-
         $totalBookings = Booking::count();
-
         $totalCustomers = Customer::distinct('email')->count('email');
-
-        // 4. إحصائية: الإيرادات اليومية (تم وضعها 0 مؤقتاً)
         $totalCollections = 0; 
 
-        // إرسال المتغيرات المطلوبة فقط إلى واجهة العرض
         return view('dashboard.home', compact(
             'allBookings', 
             'totalBookings', 
@@ -51,4 +47,40 @@ class HomeController extends Controller
     {
         return view('profile');
     }
+    public function updatePassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'current_password' => 'required',
+            'new_password'     => 'required|string|min:8|confirmed',
+        ], [
+            'current_password.required' => 'The current password field is required.',
+            'new_password.required'     => 'The new password field is required.',
+            'new_password.min'          => 'The new password must be at least 8 characters.',
+            'new_password.confirmed'    => 'The new password confirmation does not match.',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator)
+                             ->withInput()
+                             ->with('active_tab', 'security');
+        }
+
+        $user = Auth::user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()
+                             ->withErrors(['current_password' => 'The provided current password does not match our records.'])
+                             ->withInput()
+                             ->with('active_tab', 'security');
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return redirect()->back()
+                         ->with('success', 'Your password has been changed successfully!')
+                         ->with('active_tab', 'security');
+    }
+
 }

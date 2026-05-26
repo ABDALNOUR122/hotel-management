@@ -5,273 +5,163 @@
             <div class="page-header mt-5">
                 <div class="row">
                     <div class="col">
-                        <h3 class="page-title">Profile</h3>
+                        <h3 class="page-title">User Profile</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Profile</li>
                         </ul>
                     </div>
                 </div>
             </div>
+
             <div class="row">
-                <div class="col-md-12">
-                    <div class="profile-header">
-                        <div class="row align-items-center">
-                            <div class="col-auto profile-image">
-                                <a href="#"> <img class="rounded-circle" alt="User Image" src="assets/img/profiles/avatar-02.jpg"> </a>
+                <div class="col-md-4">
+                    <div class="card text-center shadow-sm mb-4">
+                        <div class="card-body">
+                            <div class="position-relative d-inline-block mb-3">
+                                <img class="rounded-circle img-thumbnail p-2 shadow-sm" alt="Hotel Logo"
+                                    src="{{ URL::to('assets/img/hotel_logo.png') }}"
+                                    style="width: 130px; height: 200; object-fit: contain; background: #044e38;">
                             </div>
-                            <div class="col ml-md-n2 profile-user-info">
-                                <h4 class="user-name mb-3">{{ Auth::user()->name }}</h4>
-                                <h6 class="text-muted mt-1">Manager</h6>
-                                <div class="user-Location mt-1"><i class="fas fa-map-marker-alt"></i> Florida, United States</div>
-                                <div class="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                            <h4 class="font-weight-bold mb-1 text-dark">{{ Auth::user()->name }}</h4>
+                            <p class="text-muted small mb-3">
+                                <span class="badge badge-pill badge-primary px-3 py-2">{{ Auth::user()->role_name }}</span>
+                            </p>
+                            <hr>
+                            <div class="text-left px-3">
+                                <p class="small text-muted mb-1"><i class="fas fa-calendar-alt mr-2"></i> Member Since</p>
+                                <h6 class="text-dark font-weight-bold mb-0">{{ Auth::user()->join_date ?? 'N/A' }}</h6>
                             </div>
-                            <div class="col-auto profile-btn"> <a href="" class="btn btn-primary">
-                            Message
-                            </a> <a href="edit-profile.html" class="btn btn-primary">
-                            Edit
-                            </a> </div>
                         </div>
                     </div>
-                    <div class="profile-menu">
-                        <ul class="nav nav-tabs nav-tabs-solid">
-                            <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#per_details_tab">About</a> </li>
-                            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#password_tab">Password</a> </li>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="profile-menu mb-3">
+                        <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#per_details_tab">
+                                    <i class="fas fa-user mr-1"></i> Personal Details
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#password_tab">
+                                    <i class="fas fa-lock mr-1"></i> Security & Password
+                                </a>
+                            </li>
                         </ul>
                     </div>
+
                     <div class="tab-content profile-tab-cont">
                         <div class="tab-pane fade show active" id="per_details_tab">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title d-flex justify-content-between">
-                                                <span>Personal Details</span>
-                                                <a class="edit-link" data-toggle="modal" href="#edit_personal_details"><i class="fa fa-edit mr-1"></i>Edit</a>
-                                                </h5>
-                                            <div class="row mt-5">
-                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Name</p>
-                                                <p class="col-sm-9">David Alvarez</p>
-                                            </div>
-                                            <div class="row">
-                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Date of Birth</p>
-                                                <p class="col-sm-9">24 Jul 1983</p>
-                                            </div>
-                                            <div class="row">
-                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Email ID </p>
-                                                <p class="col-sm-9"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="caaeabbca3aeaba6bcabb8afb08aafb2aba7baa6afe4a9a5a7">[email&#160;protected]</a></p>
-                                            </div>
-                                            <div class="row">
-                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Mobile</p>
-                                                <p class="col-sm-9">305-310-5857</p>
-                                            </div>
-                                            <div class="row">
-                                                <p class="col-sm-3 text-sm-right mb-0">Address</p>
-                                                <p class="col-sm-9 mb-0">4663 Agriculture Lane,
-                                                    <br> Miami,
-                                                    <br> Florida - 33165,
-                                                    <br> United States.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal fade" id="edit_personal_details" aria-hidden="true" role="dialog">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Personal Details</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form>
-                                                        <div class="row form-row">
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>First Name</label>
-                                                                    <input type="text" class="form-control" value="John"> </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>Last Name</label>
-                                                                    <input type="text" class="form-control" value="Doe"> </div>
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <div class="form-group">
-                                                                    <label>Date of Birth</label>
-                                                                    <div class="cal-icon">
-                                                                        <input type="text" class="form-control" value="24-07-1983"> </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>Email ID</label>
-                                                                    <input type="email" class="form-control" value="johndoe@example.com"> </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>Mobile</label>
-                                                                    <input type="text" value="+1 202-555-0125" class="form-control"> </div>
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <h5 class="form-title"><span>Address</span></h5> </div>
-                                                            <div class="col-12">
-                                                                <div class="form-group">
-                                                                    <label>Address</label>
-                                                                    <input type="text" class="form-control" value="4663 Agriculture Lane"> </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>City</label>
-                                                                    <input type="text" class="form-control" value="Miami"> </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>State</label>
-                                                                    <input type="text" class="form-control" value="Florida"> </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>Zip Code</label>
-                                                                    <input type="text" class="form-control" value="22434"> </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>Country</label>
-                                                                    <input type="text" class="form-control" value="United States"> </div>
-                                                            </div>
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-white font-weight-bold text-dark p-3">
+                                    <i class="fas fa-id-card text-primary mr-2"></i> Overview Information
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title d-flex justify-content-between">
-                                                <span>Personal Details</span>
-                                                <a class="edit-link" data-toggle="modal" href="#edit_personal_details"><i class="fa fa-edit mr-1"></i>Edit</a>
-                                                </h5>
-                                            <div class="row mt-5">
-                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Name</p>
-                                                <p class="col-sm-9">David Alvarez</p>
-                                            </div>
-                                            <div class="row">
-                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Date of Birth</p>
-                                                <p class="col-sm-9">24 Jul 1983</p>
-                                            </div>
-                                            <div class="row">
-                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Email ID </p>
-                                                <p class="col-sm-9"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="385c594e515c59544e594a5d42785d40595548545d165b5755">[email&#160;protected]</a></p>
-                                            </div>
-                                            <div class="row">
-                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Mobile</p>
-                                                <p class="col-sm-9">305-310-5857</p>
-                                            </div>
-                                            <div class="row">
-                                                <p class="col-sm-3 text-sm-right mb-0">Address</p>
-                                                <p class="col-sm-9 mb-0">4663 Agriculture Lane,
-                                                    <br> Miami,
-                                                    <br> Florida - 33165,
-                                                    <br> United States.</p>
+                                <div class="card-body p-4">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <label class="text-muted small font-weight-bold text-uppercase">Full
+                                                Name</label>
+                                            <div class="d-flex align-items-center bg-light p-3 rounded">
+                                                <i class="fas fa-user-circle text-secondary mr-3 fa-lg"></i>
+                                                <span class="text-dark font-weight-bold">{{ Auth::user()->name }}</span>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="modal fade" id="edit_personal_details1" aria-hidden="true" role="dialog">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Personal Details</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form>
-                                                        <div class="row form-row">
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>First Name</label>
-                                                                    <input type="text" class="form-control" value="John"> </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>Last Name</label>
-                                                                    <input type="text" class="form-control" value="Doe"> </div>
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <div class="form-group">
-                                                                    <label>Date of Birth</label>
-                                                                    <div class="cal-icon">
-                                                                        <input type="text" class="form-control" value="24-07-1983"> </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>Email ID</label>
-                                                                    <input type="email" class="form-control" value="johndoe@example.com"> </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>Mobile</label>
-                                                                    <input type="text" value="+1 202-555-0125" class="form-control"> </div>
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <h5 class="form-title"><span>Address</span></h5> </div>
-                                                            <div class="col-12">
-                                                                <div class="form-group">
-                                                                    <label>Address</label>
-                                                                    <input type="text" class="form-control" value="4663 Agriculture Lane"> </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>City</label>
-                                                                    <input type="text" class="form-control" value="Miami"> </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>State</label>
-                                                                    <input type="text" class="form-control" value="Florida"> </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>Zip Code</label>
-                                                                    <input type="text" class="form-control" value="22434"> </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label>Country</label>
-                                                                    <input type="text" class="form-control" value="United States"> </div>
-                                                            </div>
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
-                                                    </form>
-                                                </div>
+
+                                        <div class="col-md-6 mb-4">
+                                            <label class="text-muted small font-weight-bold text-uppercase">Email
+                                                Address</label>
+                                            <div class="d-flex align-items-center bg-light p-3 rounded">
+                                                <i class="fas fa-envelope text-secondary mr-3 fa-lg"></i>
+                                                <span class="text-dark">{{ Auth::user()->email }}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 mb-4">
+                                            <label class="text-muted small font-weight-bold text-uppercase">Phone
+                                                Number</label>
+                                            <div class="d-flex align-items-center bg-light p-3 rounded">
+                                                <i class="fas fa-phone text-secondary mr-3 fa-lg"></i>
+                                                <span class="text-dark">{{ Auth::user()->phone_number ?? 'Not Set' }}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 mb-4">
+                                            <label class="text-muted small font-weight-bold text-uppercase">Current
+                                                Position</label>
+                                            <div class="d-flex align-items-center bg-light p-3 rounded">
+                                                <i class="fas fa-briefcase text-secondary mr-3 fa-lg"></i>
+                                                <span
+                                                    class="text-dark font-weight-bold">{{ Auth::user()->position ?? 'Staff' }}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label class="text-muted small font-weight-bold text-uppercase">Assigned
+                                                Department</label>
+                                            <div class="d-flex align-items-center bg-light p-3 rounded">
+                                                <i class="fas fa-building text-secondary mr-3 fa-lg"></i>
+                                                <span class="text-dark">{{ Auth::user()->department ?? 'N/A' }}</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div id="password_tab" class="tab-pane fade">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Change Password</h5>
-                                    <div class="row">
-                                        <div class="col-md-10 col-lg-6">
-                                            <form>
-                                                <div class="form-group">
-                                                    <label>Old Password</label>
-                                                    <input type="password" class="form-control"> </div>
-                                                <div class="form-group">
-                                                    <label>New Password</label>
-                                                    <input type="password" class="form-control"> </div>
-                                                <div class="form-group">
-                                                    <label>Confirm Password</label>
-                                                    <input type="password" class="form-control"> </div>
-                                                <button class="btn btn-primary" type="submit">Save Changes</button>
-                                            </form>
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-white font-weight-bold text-dark p-3">
+                                    <i class="fas fa-shield-alt text-primary mr-2"></i> Account Security
+                                </div>
+                                <div class="card-body p-4">
+
+                                    @if(session('success'))
+                                        <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+                                            <i class="fas fa-check-circle mr-2"></i> {{ session('success') }}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
-                                    </div>
+                                    @endif
+
+                                    <form action="{{ route('profile.change-password') }}" method="POST">
+                                        @csrf
+
+                                        <div class="form-group mb-3">
+                                            <label class="font-weight-bold text-muted small">Current Password</label>
+                                            <input type="password"
+                                                class="form-control @error('current_password') is-invalid @enderror"
+                                                name="current_password" placeholder="••••••••"
+                                                value="{{ old('current_password') }}">
+                                            @error('current_password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label class="font-weight-bold text-muted small">New Password</label>
+                                            <input type="password"
+                                                class="form-control @error('new_password') is-invalid @enderror"
+                                                name="new_password" placeholder="Minimum 8 characters">
+                                            @error('new_password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group mb-4">
+                                            <label class="font-weight-bold text-muted small">Confirm New Password</label>
+                                            <input type="password" class="form-control" name="new_password_confirmation"
+                                                placeholder="Repeat new password">
+                                        </div>
+
+                                        <button class="btn btn-primary px-4" type="submit">Update Password</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -280,4 +170,15 @@
             </div>
         </div>
     </div>
+
+    @if(session('active_tab') == 'security')
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                let securityTabLink = document.querySelector('a[href="#password_tab"]');
+                if (securityTabLink) {
+                    securityTabLink.click();
+                }
+            });
+        </script>
+    @endif
 @endsection

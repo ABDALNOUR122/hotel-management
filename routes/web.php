@@ -1,10 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoomsController;
+use App\Http\Controllers\UserManagementController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +51,7 @@ Auth::routes();
 Route::controller(HomeController::class)->group(function () {
     Route::get('/home', 'index')->name('home');
     Route::get('/profile', 'profile')->name('profile');
+    Route::post('/profile/change-password', 'updatePassword')->name('profile.change-password')->middleware('auth');
 });
 
 // -----------------------------login----------------------------------------//
@@ -62,3 +68,51 @@ Route::controller(RegisterController::class)->group(function () {
 });
 
 
+
+
+// ----------------------------- booking -----------------------------//
+Route::controller(BookingController::class)->group(function () {
+    Route::get('form/allbooking', 'allbooking')->name('form/allbooking')->middleware('auth');
+    Route::get('form/booking/edit/{bkg_id}', 'bookingEdit')->middleware('auth');
+    Route::get('form/booking/add', 'bookingAdd')->middleware('auth')->name('form/booking/add');
+    Route::post('form/booking/save', 'saveRecord')->middleware('auth')->name('form/booking/save');
+    Route::post('form/booking/update', 'updateRecord')->middleware('auth')->name('form/booking/update');
+    Route::post('form/booking/delete', 'deleteRecord')->middleware('auth')->name('form/booking/delete');
+});
+
+// ---------------------------- customers --------------------------//
+Route::controller(CustomerController::class)->group(function () {
+    Route::get('form/allcustomers/page', 'allCustomers')->middleware('auth')->name('form/allcustomers/page');
+    Route::get('form/addcustomer/page', 'addCustomer')->middleware('auth')->name('form/addcustomer/page');
+    Route::post('form/addcustomer/save', 'saveCustomer')->middleware('auth')->name('form/addcustomer/save');
+    Route::get('form/customer/edit/{bkg_customer_id}', 'updateCustomer')->middleware('auth');
+    Route::post('form/customer/update', 'updateRecord')->middleware('auth')->name('form/customer/update');
+    Route::post('form/customer/delete', 'deleteRecord')->middleware('auth')->name('form/customer/delete');
+});
+
+// ----------------------------- rooms -----------------------------//
+Route::controller(RoomsController::class)->group(function () {
+    Route::get('form/allrooms/page', 'allrooms')->middleware('auth')->name('form/allrooms/page');
+    Route::get('form/addroom/page', 'addRoom')->middleware('auth')->name('form/addroom/page');
+    Route::get('form/room/edit/{bkg_room_id}', 'editRoom')->middleware('auth');
+    Route::post('form/room/save', 'saveRecordRoom')->middleware('auth')->name('form/room/save');
+    Route::post('form/room/delete', 'deleteRecord')->middleware('auth')->name('form/room/delete');
+    Route::post('form/room/update', 'updateRecord')->middleware('auth')->name('form/room/update');
+});
+
+// ----------------------- user management -------------------------//
+Route::controller(UserManagementController::class)->group(function () {
+    Route::get('users/list/page', 'userList')->middleware('auth')->name('users/list/page');
+    Route::get('users/add/new', 'userAddNew')->middleware('auth')->name('users/add/new'); /** add new users */
+    Route::get('users/add/edit/{user_id}', 'userView'); /** add new users */
+    Route::post('users/update', 'userUpdate')->name('users/update'); /** update record */
+    Route::get('users/delete/{id}', 'userDelete')->name('users/delete'); /** delere record */
+    Route::get('get-users-data', 'getUsersData')->name('get-users-data'); /** get all data users */
+});
+
+// ----------------------------- employee -----------------------------//
+Route::controller(EmployeeController::class)->group(function () {
+    Route::get('form/emplyee/list', 'employeesList')->middleware('auth')->name('form/emplyee/list');
+    Route::get('form/employee/add', 'employeesAdd')->middleware('auth')->name('form/employee/add');
+    Route::get('form/leaves/page', 'leavesPage')->middleware('auth')->name('form/leaves/page');
+});
