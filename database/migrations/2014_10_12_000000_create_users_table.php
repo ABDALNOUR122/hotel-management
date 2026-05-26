@@ -18,12 +18,26 @@ class CreateUsersTable extends Migration
             $table->string('user_id')->nullable();
             $table->string('name')->nullable();
             $table->string('email')->nullable();
-            $table->timestamp('join_date')->nullable();
+            $table->datetime('join_date')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('role_name')->nullable();
-            $table->string('avatar')->nullable();
-            $table->string('position')->nullable();
-            $table->string('department')->nullable();
+            $table->enum('role_name', ['Admin', 'Manager', 'Staff'])->default('Staff'); 
+            $table->enum('position', [
+                'General Manager', 
+                'Receptionist', 
+                'Housekeeper', 
+                'Chef', 
+                'Waiter', 
+                'Accountant', 
+                'Security Officer'
+            ])->default('Receptionist');
+            $table->enum('department', [
+                'Administration', 
+                'Front Office', 
+                'Housekeeping', 
+                'Food & Beverage', 
+                'Finance & Accounting', 
+                'Security'
+            ])->default('Housekeeping'); 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

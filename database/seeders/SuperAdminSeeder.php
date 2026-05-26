@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class SuperAdminSeeder extends Seeder
 {
@@ -21,10 +21,9 @@ class SuperAdminSeeder extends Seeder
             'email'             => 'admin@system.com',
             'join_date'         => Carbon::now(),
             'phone_number'      => '0500000000',
-            'role_name'         => 'Super Admin',
-            'avatar'            => null,
+            'role_name'         => 'Admin',
             'position'          => 'General Manager',
-            'department'        => 'Management',
+            'department'        => 'Administration',
             'email_verified_at' => Carbon::now(),
             'password'          => Hash::make('password123'),
         ]);
