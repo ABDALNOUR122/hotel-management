@@ -10,7 +10,6 @@
                     <ul class="submenu_class" style="display: none;">
                         <li><a class="{{ set_active(['form/allbooking']) }}" href="{{ route('form/allbooking') }}"> All
                                 Booking </a></li>
-                        <li><a class="{{ request()->is('form/booking/edit/*') ? 'active' : '' }}"> Edit Booking </a>
                         </li>
                         <li><a class="{{ set_active(['form/booking/add']) }}" href="{{ route('form/booking/add') }}">
                                 Add Booking </a></li>
@@ -21,8 +20,7 @@
                     <ul class="submenu_class" style="display: none;">
                         <li><a class="{{ set_active(['form/allcustomers/page']) }}"
                                 href="{{ route('form/allcustomers/page') }}"> All customers </a></li>
-                        <li><a class="{{ request()->is('form/customer/edit/*') ? 'active' : '' }}"> Edit Customer </a>
-                        </li>
+                      
                         <li><a class="{{ set_active(['form/addcustomer/page']) }}"
                                 href="{{ route('form/addcustomer/page') }}"> Add Customer </a></li>
                     </ul>
@@ -32,7 +30,6 @@
                     <ul class="submenu_class" style="display: none;">
                         <li><a class="{{ set_active(['form/allrooms/page']) }}"
                                 href="{{ route('form/allrooms/page') }}">All Rooms </a></li>
-                        <li><a class="{{ request()->is('form/room/edit/*') ? 'active' : '' }}"> Edit Rooms </a></li>
                         <li><a class="{{ set_active(['form/addroom/page']) }}" href="{{ route('form/addroom/page') }}">
                                 Add Rooms </a></li>
                     </ul>

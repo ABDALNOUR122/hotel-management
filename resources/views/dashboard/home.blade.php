@@ -37,8 +37,7 @@
             </div>
 
             <div class="row">
-                {{-- بطاقة عدد الحجوزات --}}
-                <div class="col-xl-4 col-sm-6 col-12">
+                <div class="col-xl-3 col-sm-6 col-12">
                     <div class="card board1 fill">
                         <div class="card-body">
                             <div class="dash-widget-header">
@@ -48,14 +47,7 @@
                                 </div>
                                 <div class="ml-auto mt-md-3 mt-lg-0">
                                     <span class="opacity-7 text-muted">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"
-                                            fill="none" stroke="#009688" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" class="feather feather-user-plus">
-                                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                            <circle cx="8.5" cy="7" r="4"></circle>
-                                            <line x1="20" y1="8" x2="20" y2="14"></line>
-                                            <line x1="23" y1="11" x2="17" y2="11"></line>
-                                        </svg>
+                                        <i class="fas fa-hotel fa-2x text-primary"></i>
                                     </span>
                                 </div>
                             </div>
@@ -63,8 +55,7 @@
                     </div>
                 </div>
 
-                {{-- بطاقة عدد العملاء --}}
-                <div class="col-xl-4 col-sm-6 col-12">
+                <div class="col-xl-3 col-sm-6 col-12">
                     <div class="card board1 fill">
                         <div class="card-body">
                             <div class="dash-widget-header">
@@ -74,14 +65,7 @@
                                 </div>
                                 <div class="ml-auto mt-md-3 mt-lg-0">
                                     <span class="opacity-7 text-muted">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"
-                                            fill="none" stroke="#009688" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" class="feather feather-users">
-                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                            <circle cx="9" cy="7" r="4"></circle>
-                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                        </svg>
+                                        <i class="fas fa-users fa-2x text-success"></i>
                                     </span>
                                 </div>
                             </div>
@@ -89,8 +73,25 @@
                     </div>
                 </div>
 
-                {{-- بطاقة الإيرادات اليومية --}}
-                <div class="col-xl-4 col-sm-6 col-12">
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card board1 fill">
+                        <div class="card-body">
+                            <div class="dash-widget-header">
+                                <div>
+                                    <h3 class="card_widget_header">{{ $totalAvailableRooms }}</h3>
+                                    <h6 class="text-muted">Available Rooms</h6>
+                                </div>
+                                <div class="ml-auto mt-md-3 mt-lg-0">
+                                    <span class="opacity-7 text-muted">
+                                        <i class="fas fa-door-open fa-2x text-info"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-sm-6 col-12">
                     <div class="card board1 fill">
                         <div class="card-body">
                             <div class="dash-widget-header">
@@ -100,12 +101,7 @@
                                 </div>
                                 <div class="ml-auto mt-md-3 mt-lg-0">
                                     <span class="opacity-7 text-muted">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"
-                                            fill="none" stroke="#009688" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" class="feather feather-dollar-sign">
-                                            <line x1="12" y1="1" x2="12" y2="23"></line>
-                                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                                        </svg>
+                                        <i class="fas fa-dollar-sign fa-2x text-warning"></i>
                                     </span>
                                 </div>
                             </div>
@@ -114,7 +110,6 @@
                 </div>
             </div>
 
-            {{-- جدول الحجوزات الحديثة (تم الإبقاء عليه لكونه جزءاً أساسياً من البيانات) --}}
             <div class="row">
                 <div class="col-md-12 d-flex">
                     <div class="card card-table flex-fill">
@@ -140,18 +135,18 @@
                                         @forelse ($allBookings as $booking)
                                             <tr>
                                                 <td class="text-nowrap">
-                                                    <div>{{ $booking->bkg_id ?? 'BKG-'.$booking->id }}</div>
+                                                    <div>BKG-{{ $booking->id }}</div>
                                                 </td>
-                                                <td class="text-nowrap">{{ $booking->name }}</td>
+                                                <td class="text-nowrap">{{ $booking->customer->name ?? 'N/A' }}</td>
                                                 <td>
-                                                    <a href="mailto:{{ $booking->email }}">{{ $booking->email }}</a>
+                                                    <a href="mailto:{{ $booking->customer->email ?? '' }}">{{ $booking->customer->email ?? 'N/A' }}</a>
                                                 </td>
-                                                <td>{{ $booking->ph_number }}</td>
-                                                <td class="text-center">{{ $booking->room_type }}</td>
-                                                <td class="text-right">{{ $booking->total_numbers }}</td>
+                                                <td>{{ $booking->customer->phone ?? 'N/A' }}</td>
+                                                <td class="text-center">{{ $booking->room->type ?? 'N/A' }}</td>
+                                                <td class="text-right"><strong>{{ $booking->room->room_number ?? 'N/A' }}</strong></td>
                                                 <td class="text-center">
                                                     <span class="badge badge-pill bg-success text-white">
-                                                        {{ $booking->date }} to {{ $booking->depature_date }}
+                                                        {{ \Carbon\Carbon::parse($booking->check_in)->format('d/m/Y') }} to {{ \Carbon\Carbon::parse($booking->check_out)->format('d/m/Y') }}
                                                     </span>
                                                 </td>
                                             </tr>
