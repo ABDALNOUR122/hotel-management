@@ -66,6 +66,19 @@ Route::controller(RegisterController::class)->group(function () {
     Route::post('/register', 'storeUser')->name('register');
 });
 
+
+
+
+// ----------------------------- booking -----------------------------//
+Route::controller(BookingController::class)->group(function () {
+    Route::get('form/allbooking', 'allbooking')->name('form/allbooking')->middleware('auth');
+    Route::get('form/booking/edit/{bkg_id}', 'bookingEdit')->middleware('auth');
+    Route::get('form/booking/add', 'bookingAdd')->middleware('auth')->name('form/booking/add');
+    Route::post('form/booking/save', 'saveRecord')->middleware('auth')->name('form/booking/save');
+    Route::post('form/booking/update', 'updateRecord')->middleware('auth')->name('form/booking/update');
+    Route::post('form/booking/delete', 'deleteRecord')->middleware('auth')->name('form/booking/delete');
+});
+
 // ---------------------------- customers --------------------------//
 Route::controller(CustomerController::class)->group(function () {
     Route::get('form/allcustomers/page', 'allCustomers')->middleware('auth')->name('form/allcustomers/page');

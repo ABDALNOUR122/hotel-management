@@ -9,44 +9,44 @@
                             class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a class="{{ set_active(['form/allbooking']) }}" href="{{ route('form/allbooking') }}"> All
-                                Booking </a></li>
-                        </li>
-                        <li><a class="{{ set_active(['form/booking/add']) }}" href="{{ route('form/booking/add') }}">
-                                Add Booking </a></li>
-                    </ul>
+                                Bookings </a></li>
                 </li>
-                <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span
-                            class="menu-arrow"></span></a>
-                    <ul class="submenu_class" style="display: none;">
-                        <li><a class="{{ set_active(['form/allcustomers/page']) }}"
-                                href="{{ route('form/allcustomers/page') }}"> All customers </a></li>
-                      
-                        <li><a class="{{ set_active(['form/addcustomer/page']) }}"
-                                href="{{ route('form/addcustomer/page') }}"> Add Customer </a></li>
-                    </ul>
-                </li>
-                <li class="submenu"> <a href="#"><i class="fas fa-key"></i> <span> Rooms </span> <span
-                            class="menu-arrow"></span></a>
-                    <ul class="submenu_class" style="display: none;">
-                        <li><a class="{{ set_active(['form/allrooms/page']) }}"
-                                href="{{ route('form/allrooms/page') }}">All Rooms </a></li>
-                        <li><a class="{{ set_active(['form/addroom/page']) }}" href="{{ route('form/addroom/page') }}">
-                                Add Rooms </a></li>
-                    </ul>
-                </li>
-                <li class="submenu">
-                    <a href="#">
-                        <i class="fa fa-user-plus"></i>
-                        <span> User Management </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul class="submenu_class" style="display: none;">
-                        <li><a class="{{ set_active(['users/add/new']) }}" href="{{ route('users/add/new') }}">Add
-                                User</a></li>
-                        <li><a class="{{ set_active(['users/list/page']) }}" href="{{ route('users/list/page') }}">All
-                                User</a></li>
-                    </ul>
-                </li>
+                <li><a class="{{ set_active(['form/booking/add']) }}" href="{{ route('form/booking/add') }}">
+                        Add Booking </a></li>
+            </ul>
+            </li>
+            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span
+                        class="menu-arrow"></span></a>
+                <ul class="submenu_class" style="display: none;">
+                    <li><a class="{{ set_active(['form/allcustomers/page']) }}"
+                            href="{{ route('form/allcustomers/page') }}"> All customers </a></li>
+
+                    <li><a class="{{ set_active(['form/addcustomer/page']) }}"
+                            href="{{ route('form/addcustomer/page') }}"> Add Customer </a></li>
+                </ul>
+            </li>
+            <li class="submenu"> <a href="#"><i class="fas fa-key"></i> <span> Rooms </span> <span
+                        class="menu-arrow"></span></a>
+                <ul class="submenu_class" style="display: none;">
+                    <li><a class="{{ set_active(['form/allrooms/page']) }}" href="{{ route('form/allrooms/page') }}">All
+                            Rooms </a></li>
+                    <li><a class="{{ set_active(['form/addroom/page']) }}" href="{{ route('form/addroom/page') }}">
+                            Add Rooms </a></li>
+                </ul>
+            </li>
+            <li class="submenu">
+                <a href="#">
+                    <i class="fa fa-user-plus"></i>
+                    <span> User Management </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="submenu_class" style="display: none;">
+                    <li><a class="{{ set_active(['users/add/new']) }}" href="{{ route('users/add/new') }}">Add
+                            User</a></li>
+                    <li><a class="{{ set_active(['users/list/page']) }}" href="{{ route('users/list/page') }}">All
+                            Users</a></li>
+                </ul>
+            </li>
             </ul>
         </div>
     </div>
