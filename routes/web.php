@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -64,8 +66,6 @@ Route::controller(RegisterController::class)->group(function () {
     Route::post('/register', 'storeUser')->name('register');
 });
 
-
-
 // ---------------------------- customers --------------------------//
 Route::controller(CustomerController::class)->group(function () {
     Route::get('form/allcustomers/page', 'allCustomers')->middleware('auth')->name('form/allcustomers/page');
@@ -76,6 +76,16 @@ Route::controller(CustomerController::class)->group(function () {
     Route::post('form/customer/delete', 'deleteRecord')->middleware('auth')->name('form/customer/delete');
 });
 
+// ----------------------------- rooms -----------------------------//
+Route::controller(RoomsController::class)->group(function () {
+    Route::get('form/allrooms/page', 'allrooms')->middleware('auth')->name('form/allrooms/page');
+    Route::get('form/addroom/page', 'addRoom')->middleware('auth')->name('form/addroom/page');
+    Route::get('form/room/edit/{bkg_room_id}', 'editRoom')->middleware('auth');
+    Route::post('form/room/save', 'saveRecordRoom')->middleware('auth')->name('form/room/save');
+    Route::post('form/room/delete', 'deleteRecord')->middleware('auth')->name('form/room/delete');
+    Route::post('form/room/update', 'updateRecord')->middleware('auth')->name('form/room/update');
+    Route::post('room/update-status', [RoomsController::class, 'updateStatus'])->name('room/updateStatus');
+});
 
 // ----------------------- user management -------------------------//
 Route::controller(UserManagementController::class)->group(function () {
